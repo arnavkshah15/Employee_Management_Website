@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { Employee } from 'src/app/models/employee.model';
 import { EmployeesService } from 'src/app/services/employees.service';
 
@@ -9,7 +12,12 @@ import { EmployeesService } from 'src/app/services/employees.service';
 })
 
 export class EmployeesListComponent {
-employees: Employee[]=[];
+
+displayedColumns: string[]=['Id','name','email','phone','salary','department','edit','delete'];
+employees:any;
+dataSource:any;
+@ViewChild(MatPaginator) paginator !:MatPaginator;
+@ViewChild(MatSort) sort !:MatSort;
 constructor(private employeesService: EmployeesService){
 
 }
@@ -17,12 +25,19 @@ ngOnInit(): void {
   this.employeesService.getAllEmployees()
   .subscribe({
     next:   (employees)=>{
-      this.employees =employees
+      this.employees =employees;
+      this.dataSource=new MatTableDataSource<Employee>(this.employees);
+      this.dataSource.paginator=this.paginator;
+      this.dataSource.sort=this.sort;
     },
     error: (response)=>{
        console.log(response);
     }
   })
+}
+Filterchange(event:Event){
+  const filvalue=(event.target as HTMLInputElement).value;
+  this.dataSource.filter=filvalue; 
 }
 }
 

@@ -1,26 +1,66 @@
-<div class="container my-5">
-<h1 class="mb-3">Employees</h1>
-<table class="table" *ngIf="employees && employees.length>0">
-<thead>
-    <tr>
-        <td>Id</td>
-        <td>Name</td>
-        <td>Email</td>
-        <td>Phone Number</td>
-        <td>Salary</td>
-        <td>Department</td>
-    </tr>
-</thead>
-<tbody>
-    <tr *ngFor="let employee of employees">
-        <td>{{employee.id}}</td>
-        <td>{{employee.name}}</td>
-        <td>{{employee.email}}</td>
-        <td>{{employee.phone}}</td>
-        <td>{{employee.salary}}</td>
-        <td>{{employee.department}}</td>
-    </tr>
-</tbody>
-</table>
-<p *ngIf="!employees || employees.length<=0">No employees found</p>
+<div class="content" role="main">
+<div class="mat-elevation-z8">
+    <mat-form-field>
+        <mat-label>Search</mat-label>
+        <input matInput placeholder="Search" (keyup)="Filterchange($event)">
+    </mat-form-field>
+<table mat-table matSort [dataSource]="dataSource" >
+
+
+    <ng-container matColumnDef="Id">
+      <th mat-header-cell mat-sort-header *matHeaderCellDef> Id </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+  
+   
+    <ng-container matColumnDef="name">
+      <th mat-header-cell mat-sort-header *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+  
+   
+    <ng-container matColumnDef="email">
+      <th mat-header-cell mat-sort-header *matHeaderCellDef> Email </th>
+      <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+    </ng-container>
+  
+    
+    <ng-container matColumnDef="phone">
+      <th mat-header-cell mat-sort-header *matHeaderCellDef> Phone </th>
+      <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="salary">
+        <th mat-header-cell mat-sort-header *matHeaderCellDef> Salary </th>
+        <td mat-cell *matCellDef="let element"> {{element.salary}} </td>
+      </ng-container>
+
+    <ng-container matColumnDef="department">
+        <th mat-header-cell mat-sort-header *matHeaderCellDef> Department </th>
+        <td mat-cell *matCellDef="let element"> {{element.department}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="edit">
+        <th mat-header-cell *matHeaderCellDef>  </th>
+        <td mat-cell *matCellDef="let element"> <button mat-icon-button >
+            <mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit"></mat-icon>
+          </button></td>
+    </ng-container>
+
+    <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef>  </th>
+        <td mat-cell *matCellDef="let element"> <button mat-icon-button >
+            <mat-icon aria-hidden="false" aria-label="Example delete icon" fontIcon="delete"></mat-icon>
+          </button></td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-paginator [length]="100"
+              [pageSize]="7"
+              [pageSizeOptions]="[5, 10, 25, 100]"
+              aria-label="Select page">
+</mat-paginator>
+</div>
 </div>
