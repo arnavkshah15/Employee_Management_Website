@@ -21,4 +21,12 @@ export class EmployeesService {
     employee.id='00000000-0000-0000-0000-000000000000'
     return this.http.post<Employee>(this.baseApiUrl+'api/employee',employee);
   }
+
+  getEmployee(id:string){ 
+    return this.http.get<Employee>(this.baseApiUrl+'api/employee/'+id);
+  }
+
+  updateEmployee(id:string,updateEmployeeRequest: Employee){
+    return this.http.put(this.baseApiUrl+'api/employee/'+id,updateEmployeeRequest);
+  }
 }

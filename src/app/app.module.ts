@@ -16,12 +16,14 @@ import {MatInputModule}from '@angular/material/input';
 import { CdkTableModule } from '@angular/cdk/table';
 import { MatButtonModule, MatIconButton } from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import { EditEmployeeComponent } from './components/employees/edit-employee/edit-employee.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EmployeesListComponent,
-    AddEmployeeComponent
+    AddEmployeeComponent,
+    EditEmployeeComponent
   ],
   imports: [
     BrowserModule,

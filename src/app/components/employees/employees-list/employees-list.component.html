@@ -40,11 +40,11 @@
         <td mat-cell *matCellDef="let element"> {{element.department}}</td>
     </ng-container>
 
-    <ng-container matColumnDef="edit">
+    <ng-container matColumnDef="edit" >
         <th mat-header-cell *matHeaderCellDef>  </th>
-        <td mat-cell *matCellDef="let element"> <button mat-icon-button >
-            <mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit"></mat-icon>
-          </button></td>
+        <td mat-cell *matCellDef="let element" ><a [routerLink]="['/employees','edit', element.id ]" style="text-decorations:none; color:inherit;"> <button  mat-icon-button  >
+            <mat-icon  aria-hidden="false" aria-label="Example edit icon" fontIcon="edit" ></mat-icon>
+          </button> </a> </td>
     </ng-container>
 
     <ng-container matColumnDef="delete">
