@@ -1,7 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { Employee } from 'src/app/models/employee.model';
 import { EmployeesService } from 'src/app/services/employees.service';
 
@@ -18,9 +20,10 @@ employees:any;
 dataSource:any;
 @ViewChild(MatPaginator) paginator !:MatPaginator;
 @ViewChild(MatSort) sort !:MatSort;
-constructor(private employeesService: EmployeesService){
+constructor(private employeesService: EmployeesService ,private router:Router){
 
 }
+
 ngOnInit(): void {
   this.employeesService.getAllEmployees()
   .subscribe({
@@ -38,6 +41,15 @@ ngOnInit(): void {
 Filterchange(event:Event){
   const filvalue=(event.target as HTMLInputElement).value;
   this.dataSource.filter=filvalue; 
+}
+
+deleteEmployee(id:string){
+this.employeesService.deleteEmployee(id)
+.subscribe({
+  next:(response)=>{
+    this.router.navigate(['employees'])
+  }
+});
 }
 }
 

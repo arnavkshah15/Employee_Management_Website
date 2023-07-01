@@ -17,6 +17,8 @@ import { CdkTableModule } from '@angular/cdk/table';
 import { MatButtonModule, MatIconButton } from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import { EditEmployeeComponent } from './components/employees/edit-employee/edit-employee.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,10 @@ import { EditEmployeeComponent } from './components/employees/edit-employee/edit
     MatInputModule,
     MatButtonModule,
     MatIconModule,
-
+    MatDialogModule,
+    ConfirmationPopoverModule.forRoot({
+      confirmButtonType:'danger'
+    })
 
 
   ],

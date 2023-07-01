@@ -49,7 +49,12 @@
 
     <ng-container matColumnDef="delete">
         <th mat-header-cell *matHeaderCellDef>  </th>
-        <td mat-cell *matCellDef="let element"> <button mat-icon-button >
+        <td mat-cell *matCellDef="let element"> <button mat-icon-button  
+          mwlConfirmationPopover
+          popoverMessage="Are you sure you want to delete this employee?" 
+          placement="left" 
+          (confirm)='deleteEmployee(element.id)'
+          cancelClicked=true>
             <mat-icon aria-hidden="false" aria-label="Example delete icon" fontIcon="delete"></mat-icon>
           </button></td>
     </ng-container>
