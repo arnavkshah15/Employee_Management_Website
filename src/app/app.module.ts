@@ -19,6 +19,9 @@ import {MatIconModule} from '@angular/material/icon';
 import { EditEmployeeComponent } from './components/employees/edit-employee/edit-employee.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import { MatTableExporterModule } from 'mat-table-exporter';
+
 
 @NgModule({
   declarations: [
@@ -44,7 +47,10 @@ import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
     MatDialogModule,
     ConfirmationPopoverModule.forRoot({
       confirmButtonType:'danger'
-    })
+    }),
+    MatToolbarModule,
+    MatTableExporterModule
+
 
 
   ],

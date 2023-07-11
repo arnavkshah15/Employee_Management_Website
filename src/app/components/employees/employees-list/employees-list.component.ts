@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -6,6 +6,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Employee } from 'src/app/models/employee.model';
 import { EmployeesService } from 'src/app/services/employees.service';
+import jspdf from 'jspdf'; 
+import autoTable from 'jspdf-autotable'
 
 @Component({
   selector: 'app-employees-list',
@@ -57,4 +59,13 @@ this.employeesService.deleteEmployee(id)
 });
 
 }
+
+downloadpdf=()=>{  
+  const doc=new jspdf()
+  
+doc.text("Employee Details",20,10)
+autoTable(doc, { html: '#my-table' })
+doc.save("table.pdf")
+}  
+
 }
