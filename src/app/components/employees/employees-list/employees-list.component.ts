@@ -25,15 +25,19 @@ constructor(private employeesService: EmployeesService ,private router:Router){
 }
 
 ngOnInit(): void {
+ this.getdate();
+}
+getdate()
+{
   this.employeesService.getAllEmployees()
   .subscribe({
-    next:   (employees)=>{
+    next:   (employees:any)=>{
       this.employees =employees;
       this.dataSource=new MatTableDataSource<Employee>(this.employees);
       this.dataSource.paginator=this.paginator;
       this.dataSource.sort=this.sort;
     },
-    error: (response)=>{
+    error: (response:any)=>{
        console.log(response);
     }
   })
@@ -46,10 +50,11 @@ Filterchange(event:Event){
 deleteEmployee(id:string){
 this.employeesService.deleteEmployee(id)
 .subscribe({
-  next:(response)=>{
-    this.router.navigate(['employees'])
+  next:(response:any)=>{
+    this.getdate();
   }
+  
 });
-}
-}
 
+}
+}
